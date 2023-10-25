@@ -1,0 +1,31 @@
+// write a program print("hello world"), using spring
+// procedure to write this program by using spring, spring must have some rules to write any program
+// 1.) create POJO class (used to developer code...)
+// 2.) create .xml file (used for to call the "POJO class" into Driver class)
+// 3.) create Drive class (to load the ".xml file" into container(spring_IOC or spring_MVC))
+
+//1.) create "POJO class" (used to developer code...)
+		class Test{
+			public void showDetail(){
+				System.out.println("hello world");		
+			}
+		}
+
+// 2.) create ".xml file" (used for to call the "POJO class" into Driver class)
+		write first line in "xml file" is following:
+	step 1: write DTD (Document Type Defination) and XSD (xml Type Defination)
+	step 2: <beans>
+			<beans class="Test" id="ref">
+			</beans>
+		</beans>
+	step 3: SAVE this file using .xml extension(like: spring.xml)
+
+// 3.) create "Drive class" (to load the ".xml file" into container(spring_IOC or spring_MVC))
+	class client{			
+		public static void main(String[] args){
+			Resource r = new classpathResource("spring.xml");
+			BeansFactory bf = new BeansFactory(r);
+			Test t = (Test)bf.getBeans("reference");	
+			t.showDetail();
+		}
+	}
